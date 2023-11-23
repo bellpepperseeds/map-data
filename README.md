@@ -1,7 +1,7 @@
-# PYTHON API FOR VIEWING MONGODB CLUSTER
+# PYTHON API FOR VIEWING MONGODB CLUSTER DATA
 
-Intended for use in a school project, but if you also have a
-mongoDB database with similar structure, this can work for you.
+Intended for use in a school project, but if you want to have
+a simple way to get your data as text, this can work for you.
 
 ## FIND ONE OR FIND ALL
 
@@ -17,5 +17,5 @@ Getting an entire collection DOESN'T need similar data structure.
 - Run with uvicorn
 >   `uvicorn main:app --reload`
 - Get data???
->   `your-url/collection-name`
+>   `your-url/collection-name`<br>
 >   `your-url/collection-name/search-term`
