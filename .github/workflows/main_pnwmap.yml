@@ -65,3 +65,6 @@ jobs:
           app-name: 'pnwmap'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9A3EAB18EED14D2094AA4282B26E4159 }}
+
+      - name: 'Start uvicorn'
+        run: uvicorn main:app
