@@ -57,7 +57,8 @@ app = FastAPI()
 # Not sure if this is necessary, but it is there
 @app.get('/')
 async def root():
-    return {'message': 'you need to specify your intent'}
+    return {'message': 'yeah we\'re here for the bts meal large fry and a coke 10 piece chicken mcnugget \
+            oh and one more thing no two more things sweet chili sauce and cajun get the bts meal from mcdonalds'}
 
 # route to get all documents in a collection
 @app.get('/{collection}')
