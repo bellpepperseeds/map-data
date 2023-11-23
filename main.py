@@ -1,22 +1,20 @@
 from fastapi import FastAPI
-import json
+from dotenv import load_dotenv
 from pymongo import MongoClient
+import os
 
 
 
-def get_uri():
-    """
-    Gets the first line of the file .info as the uri for a mongdoDB database
-    """
+# Load .env as environment variables
+load_dotenv()
 
-    with open('.info','r') as file:
-        return file.readline().strip()
-    
+# Connect to cluster with URI
+client = MongoClient(os.environ.get('URI'))
+##print('Connected to client')
 
-client = MongoClient(get_uri())
-print('Connected to client')
-db = client['pnwmap']
-print('Got db')
+# Connect to database
+db = client[os.environ.get('DB')]
+##print('Got db')
 
 def find_doc(collection, search=''):
     """
