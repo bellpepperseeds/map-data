@@ -11,8 +11,11 @@ Getting an entire collection DOESN'T need similar data structure.
 
 ## INSTALLATION
 1. Set up environment
->   python -m venv *your venv name*
+>   `python -m venv (your venv name)`
 - Download requirements
->   python -m pip install -r requirements.txt
+>   `python -m pip install -r requirements.txt`
 - Run with uvicorn
+>   `uvicorn main:app --reload`
 - Get data???
+>   `your-url/collection-name`
+>   `your-url/collection-name/search-term`
