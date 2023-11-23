@@ -3,20 +3,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
 
-
-
-# Load .env as environment variables
-load_dotenv()
-
-# Connect to cluster with URI
-client = MongoClient(os.environ.get('URI'))
-##print('Connected to client')
-
-# Connect to database
-db = client[os.environ.get('DB')]
-##print('Got db')
-
-def find_doc(collection, search=''):
+def find_doc(db, collection, search=''):
     """
     Returns JSON string of the query results in a collection
 
@@ -39,7 +26,7 @@ def find_doc(collection, search=''):
 
     return str(res)
 
-def get_all(collection):
+def get_all(db, collection):
     """
     Returns JSON string of all documents in a collection
 
@@ -53,20 +40,31 @@ def get_all(collection):
 
     return str(list(res))
 
-# Start app
-app = FastAPI()
+# Load .env as environment variables
+load_dotenv()
 
-# Not sure if this is necessary, but it is there
-@app.get('/')
-async def root():
-    return {'message': 'you need to specify your intent'}
+# Connect to cluster with URI
+with MongoClient(os.environ.get('URI')) as client:
+    ##print('Connected to client')
 
-# route to get all documents in a collection
-@app.get('/{collection}')
-async def root(collection):
-    return {'message': get_all(collection)}
+    # Connect to database
+    db = client[os.environ.get('DB')]
+    ##print('Got db')
 
-# route to search for specific data
-@app.get('/{collection}/{search}')
-async def root(collection, search):
-    return {'message': find_doc(collection, search)}
+    # Start app
+    app = FastAPI()
+
+    # Not sure if this is necessary, but it is there
+    @app.get('/')
+    async def root():
+        return {'message': 'you need to specify your intent'}
+
+    # route to get all documents in a collection
+    @app.get('/{collection}')
+    async def root(collection):
+        return {'message': get_all(db, collection)}
+
+    # route to search for specific data
+    @app.get('/{collection}/{search}')
+    async def root(collection, search):
+        return {'message': find_doc(db, collection, search)}
