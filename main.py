@@ -44,27 +44,27 @@ def get_all(db, collection):
 load_dotenv()
 
 # Connect to cluster with URI
-with MongoClient(os.environ.get('URI')) as client:
-    ##print('Connected to client')
+client = MongoClient(os.environ.get('URI'))
+##print('Connected to client')
 
-    # Connect to database
-    db = client[os.environ.get('DB')]
-    ##print('Got db')
+# Connect to database
+db = client[os.environ.get('DB')]
+##print('Got db')
 
-    # Start app
-    app = FastAPI()
+# Start app
+app = FastAPI()
 
-    # Not sure if this is necessary, but it is there
-    @app.get('/')
-    async def root():
-        return {'message': 'you need to specify your intent'}
+# Not sure if this is necessary, but it is there
+@app.get('/')
+async def root():
+    return {'message': 'you need to specify your intent'}
 
-    # route to get all documents in a collection
-    @app.get('/{collection}')
-    async def root(collection):
-        return {'message': get_all(db, collection)}
+# route to get all documents in a collection
+@app.get('/{collection}')
+async def root(collection):
+    return {'message': get_all(db, collection)}
 
-    # route to search for specific data
-    @app.get('/{collection}/{search}')
-    async def root(collection, search):
-        return {'message': find_doc(db, collection, search)}
+# route to search for specific data
+@app.get('/{collection}/{search}')
+async def root(collection, search):
+    return {'message': find_doc(db, collection, search)}
