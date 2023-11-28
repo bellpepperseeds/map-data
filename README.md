@@ -22,4 +22,7 @@ Getting an entire collection DOESN'T need similar data structure.
 5. Get data???
 >   `your-url/collection-name`<br>
 >   `your-url/collection-name/search-term`
+- Returns as a JSON string {
+    "message" : selected documents
+}
 
