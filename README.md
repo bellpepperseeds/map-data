@@ -12,10 +12,14 @@ Getting an entire collection DOESN'T need similar data structure.
 ## INSTALLATION
 1. Set up environment
 >   `python -m venv (your venv name)`
-- Download requirements
+2. Download requirements
 >   `python -m pip install -r requirements.txt`
-- Run with uvicorn
+3. Update environment variables or add .env with:
+- URI=your MongDB cluster connection string
+- DB=your database name you plan on using
+4. Run with uvicorn
 >   `uvicorn main:app --reload`
-- Get data???
+5. Get data???
 >   `your-url/collection-name`<br>
 >   `your-url/collection-name/search-term`
+
