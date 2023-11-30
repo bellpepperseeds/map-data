@@ -1,4 +1,4 @@
-# PYTHON API FOR VIEWING MONGODB CLUSTER DATA
+# PYTHON API FOR VIEWING MONGODB CLUSTER DATA HOSTED ON HEROKU
 
 Intended for use in a school project, but if you want to have
 a simple way to get your data as text, this can work for you.
