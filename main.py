@@ -17,7 +17,7 @@ def find_doc(db, collection, search=''):
         in the searchTerms field, can be empty
     """
 
-    res = db[collection].find_one(
+    res = db[collection].find(
         {
             '$or': [{
                 'name': {
@@ -34,7 +34,7 @@ def find_doc(db, collection, search=''):
         ]}
     )
 
-    return str(res)
+    return str(list(res))
 
 def get_all(db, collection):
     """
