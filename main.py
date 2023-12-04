@@ -46,13 +46,6 @@ def get_all(db, collection):
 
     return json.loads(dumps(res))
 
-def test(db):
-    res = db['buildings'].find({})
-    print('\n\n\n')
-    print(json.loads(dumps(res)))
-    print('\n\n\n')
-
-
 # Load .env as environment variables
 load_dotenv()
 
@@ -63,8 +56,6 @@ client = MongoClient(os.environ.get('URI'))
 # Connect to database
 db = client[os.environ.get('DB')]
 ##print('Got db')
-
-test(db)
 
 # Start app
 app = FastAPI()
