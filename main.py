@@ -61,11 +61,11 @@ async def root():
             oh and one more thing no two more things sweet chili sauce and cajun get the bts meal from mcdonalds'}
 
 # route to get all documents in a collection
-@app.get('/{collection}')
+@app.get('/collection/{collection}')
 async def root(collection):
     return {'message': get_all(db, collection)}
 
-# route to search for specific data
-@app.get('/{collection}/{search}')
+# route to search for documents in a collection
+@app.get('/collection/{collection}/{search}')
 async def root(collection, search):
     return {'message': find_doc(db, collection, search)}
