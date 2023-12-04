@@ -2,8 +2,10 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
+import json
+from bson.json_util import dumps, loads
 
-def find_doc(db, collection, search=''):
+def find_docs(db, collection, search=''):
     """
     Returns JSON string of the query results in a collection
 
@@ -28,7 +30,7 @@ def find_doc(db, collection, search=''):
         ]}
     )
 
-    return str(list(res))
+    return json.loads(dumps(res))
 
 def get_all(db, collection):
     """
@@ -42,7 +44,14 @@ def get_all(db, collection):
 
     res = db[collection].find({})
 
-    return str(list(res))
+    return json.loads(dumps(res))
+
+def test(db):
+    res = db['buildings'].find({})
+    print('\n\n\n')
+    print(json.loads(dumps(res)))
+    print('\n\n\n')
+
 
 # Load .env as environment variables
 load_dotenv()
@@ -55,20 +64,22 @@ client = MongoClient(os.environ.get('URI'))
 db = client[os.environ.get('DB')]
 ##print('Got db')
 
+test(db)
+
 # Start app
 app = FastAPI()
 
 # Not sure if this is necessary, but it is there
 @app.get('/')
 async def root():
-    return {'message': 'get the bts meal from mcdonalds'}
+    return 'get the bts meal from mcdonalds'
 
 # route to get all documents in a collection
 @app.get('/search/{collection}')
 async def root(collection):
-    return {'message': get_all(db, collection)}
+    return get_all(db, collection)
 
 # route to search for documents in a collection
 @app.get('/search/{collection}/{name}')
 async def root(collection, name):
-    return {'message': find_doc(db, collection, name)}
+    return find_docs(db, collection, name)

@@ -24,7 +24,5 @@ Getting an entire collection DOESN'T need similar data structure.
 >   `your-url/search/collection-name`<br>
 >   Get documents with specific names
 >   `your-url/serach/collection-name/search-term`<br>
-- Returns as a JSON string {
-    "message" : selected documents as a string
-}
+- Returns as a JSON list of selected documents
 
