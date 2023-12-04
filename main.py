@@ -24,12 +24,6 @@ def find_doc(db, collection, search=''):
                     '$regex': search,
                     '$options': 'i'
                 }
-                },
-            {
-                'searchTerms': {
-                    '$regex': search,
-                    '$options': 'i'
-                }
                 }
         ]}
     )
@@ -75,6 +69,6 @@ async def root(collection):
     return {'message': get_all(db, collection)}
 
 # route to search for documents in a collection
-@app.get('/search/{collection}/{search}')
-async def root(collection, search):
-    return {'message': find_doc(db, collection, search)}
+@app.get('/search/{collection}/{name}')
+async def root(collection, name):
+    return {'message': find_doc(db, collection, name)}
