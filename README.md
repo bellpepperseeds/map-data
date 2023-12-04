@@ -10,20 +10,21 @@ or just get all the documents in a collection.
 Getting an entire collection DOESN'T need similar data structure.
 
 ## INSTALLATION
-1. Set up environment
+1. Set up environment (or don't)
 >   `python -m venv (your venv name)`
 2. Download requirements
 >   `python -m pip install -r requirements.txt`
 3. Update environment variables or add .env with:
 - URI=your MongDB cluster connection string
 - DB=your database name you plan on using
-4. Run with uvicorn
+4a. ((Local)) Run with uvicorn
 >   `uvicorn main:app --reload`
+4b. ((Heroku)) Runs the procfile
 5. Get data???
 >   Get an entire collection
 >   `your-url/search/collection-name`<br>
 >   Get documents with specific names
->   `your-url/serach/collection-name/search-term`
+>   `your-url/serach/collection-name/search-term`<br>
 - Returns as a JSON string {
     "message" : selected documents as a string
 }
