@@ -18,9 +18,19 @@ def find_doc(db, collection, search=''):
     """
 
     res = db[collection].find_one(
-        {'$or': [
-            {'name': search},
-            {'searchTerms': search}
+        {
+            '$or': [{
+                'name': {
+                    '$regex': search,
+                    '$options': 'i'
+                }
+                },
+            {
+                'searchTerms': {
+                    '$regex': search,
+                    '$options': 'i'
+                }
+                }
         ]}
     )
 
