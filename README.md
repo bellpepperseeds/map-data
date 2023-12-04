@@ -17,9 +17,8 @@ Getting an entire collection DOESN'T need similar data structure.
 3. Update environment variables or add .env with:
 - URI=your MongDB cluster connection string
 - DB=your database name you plan on using
-4a. ((Local)) Run with uvicorn
+4. If local Run with uvicorn
 >   `uvicorn main:app --reload`
-4b. ((Heroku)) Runs the procfile
 5. Get data???
 >   Get an entire collection
 >   `your-url/search/collection-name`<br>
