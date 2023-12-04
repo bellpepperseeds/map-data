@@ -20,9 +20,11 @@ Getting an entire collection DOESN'T need similar data structure.
 4. Run with uvicorn
 >   `uvicorn main:app --reload`
 5. Get data???
->   `your-url/collection-name`<br>
->   `your-url/collection-name/search-term`
+>   Get an entire collection
+>   `your-url/search/collection-name`<br>
+>   Get documents with specific names
+>   `your-url/serach/collection-name/search-term`
 - Returns as a JSON string {
-    "message" : selected documents
+    "message" : selected documents as a string
 }
 
