@@ -14,6 +14,7 @@ campus_layout = [
     (5, 5, 0),   # Building 4
 ]
 
+
 # Create buildings in the scene
 for i, coord in enumerate(campus_layout):
     bpy.ops.mesh.primitive_cube_add(size=2, enter_editmode=False, align='WORLD', location=coord)
