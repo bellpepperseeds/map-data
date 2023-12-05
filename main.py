@@ -74,3 +74,7 @@ async def root(collection):
 @app.get('/search/{collection}/{name}')
 async def root(collection, name):
     return find_docs(db, collection, name)
+
+#Is this just the search section?
+#Is there a separate data entry section? 
+#Insert documents. such as collection_name.insert_many([item1,item2])
