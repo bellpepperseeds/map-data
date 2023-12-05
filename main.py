@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
 import json
-from bson.json_util import dumps, loads
+from bson.json_util import dumps
 
 def find_docs(db, collection, search=''):
     """
@@ -21,11 +21,20 @@ def find_docs(db, collection, search=''):
 
     res = db[collection].find(
         {
-            '$or': [{
-                'name': {
-                    '$regex': search,
-                    '$options': 'i'
-                }
+            '$or': [
+                {
+                    'name': {
+                        '$regex': search,
+                        '$options': 'i',
+                        '$exists': True
+                    }
+                },
+                {
+                    'abbr': {
+                        '$regex': search,
+                        '$options': 'i',
+                        '$exists': True
+                    } 
                 }
         ]}
     )
@@ -74,7 +83,3 @@ async def root(collection):
 @app.get('/search/{collection}/{name}')
 async def root(collection, name):
     return find_docs(db, collection, name)
-
-#Is this just the search section?
-#Is there a separate data entry section? 
-#Insert documents. such as collection_name.insert_many([item1,item2])
