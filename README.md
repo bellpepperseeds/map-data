@@ -12,17 +12,21 @@ Getting an entire collection DOESN'T need similar data structure.
 ## INSTALLATION
 1. Set up environment (or don't)
 >   `python -m venv (your venv name)`
+<br>
 2. Download requirements
 >   `python -m pip install -r requirements.txt`
+<br>
 3. Update environment variables or add .env with:
-- URI=your MongDB cluster connection string
-- DB=your database name you plan on using
+- URI=(your MongDB cluster connection string)
+- DB=(your database name you plan on using)
+<br>
 4. If local Run with uvicorn
->   `uvicorn main:app --reload`
+>   `uvicorn main:app` or `uvicorn main:app --reload`
+<br>
 5. Get data???
 >   Get an entire collection
->   `your-url/search/collection-name`<br>
+>   `your-url/search/(collection-name)`<br>
 >   Get documents with specific names
->   `your-url/serach/collection-name/search-term`<br>
+>   `your-url/serach/(collection-name)/(search-term)`<br>
 - Returns as a JSON list of selected documents
 

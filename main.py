@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
 from pymongo import MongoClient
+from pymongo.errors import ConfigurationError
 import os
+import sys
 import json
 from bson.json_util import dumps
 
@@ -58,13 +60,19 @@ def get_all(db, collection):
 # Load .env as environment variables
 load_dotenv()
 
-# Connect to cluster with URI
-client = MongoClient(os.environ.get('URI'))
-##print('Connected to client')
+# Set up client
+client = None
+try:
+    # Connect to cluster with URI
+    client = MongoClient(os.environ.get('URI'))
+except ConfigurationError:
+    print('Could not connect to the cluster')
+    sys.exit()
+
 
 # Connect to database
 db = client[os.environ.get('DB')]
-##print('Got db')
+
 
 # Start app
 app = FastAPI()
